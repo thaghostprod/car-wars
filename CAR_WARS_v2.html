@@ -1,0 +1,459 @@
+<!DOCTYPE html> <html lang="it"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <title>CAR WARS — Marketplace Auto</title> <style> :root{ --bg:#070a0f; --panel:#10151d; --panel2:#151c26; --line:#26313e; --text:#f5f7fa; --muted:#8d99a8; --blue:#00aaff; --blue2:#006eff; --lime:#b7ff00; --red:#ff4055; --green:#21df88; --gold:#ffc400; } *{ box-sizing:border-box; } html{ scroll-behavior:smooth; } body{ margin:0; background: radial-gradient(circle at 10% 0%,rgba(0,170,255,.13),transparent 28%), radial-gradient(circle at 90% 10%,rgba(183,255,0,.07),transparent 25%), var(--bg); color:var(--text); font-family:Arial,Helvetica,sans-serif; } button,input,select,textarea{ font:inherit; } button{ cursor:pointer; } .hidden{ display:none!important; } /* ================= HEADER ================= */ header{ position:sticky; top:0; z-index:100; background:rgba(7,10,15,.9); backdrop-filter:blur(15px); border-bottom:1px solid rgba(255,255,255,.08); } .nav{ max-width:1250px; min-height:72px; margin:auto; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; gap:15px; } .logo{ border:0; background:none; color:white; font-size:30px; font-weight:1000; font-style:italic; letter-spacing:-2px; padding:0; } .logo .car{ background:linear-gradient(90deg,#00d5ff,#0070ff,#6b35ff); -webkit-background-clip:text; background-clip:text; color:transparent; } .logo .wars{ background:linear-gradient(90deg,#b7ff00,#36ff6b,#00ffd0); -webkit-background-clip:text; background-clip:text; color:transparent; } .logo-icon{ font-size:22px; margin-left:4px; }
+.f1-under-logo{
+  display:block;
+  margin-top:3px;
+  margin-left:2px;
+  font-size:9px;
+  line-height:1;
+  font-weight:1000;
+  letter-spacing:1.5px;
+  color:#ff4055;
+  font-style:italic;
+} .nav-actions{ display:flex; align-items:center; gap:8px; } .nav-btn{ border:1px solid var(--line); background:var(--panel); color:white; border-radius:10px; padding:10px 14px; font-weight:800; } .nav-btn:hover{ border-color:var(--blue); } .nav-btn.admin{ color:var(--lime); } /* ================= HERO ================= */ .hero{ max-width:1250px; margin:auto; padding:70px 20px 40px; display:grid; grid-template-columns:1.25fr .75fr; gap:30px; align-items:center; } .eyebrow{ color:var(--lime); font-size:12px; font-weight:900; letter-spacing:2px; text-transform:uppercase; margin-bottom:15px; } .hero h1{ margin:0; font-size:clamp(45px,7vw,82px); line-height:.9; letter-spacing:-5px; } .hero h1 span{ background:linear-gradient(90deg,#00bfff,#087cff,#b7ff00); -webkit-background-clip:text; background-clip:text; color:transparent; } .hero p{ max-width:650px; color:var(--muted); font-size:18px; line-height:1.6; } .hero-buttons{ display:flex; gap:10px; flex-wrap:wrap; margin-top:25px; } .primary{ background:linear-gradient(135deg,var(--blue),var(--blue2)); color:white; border:0; border-radius:12px; padding:13px 19px; font-weight:900; } .secondary{ background:var(--panel); color:white; border:1px solid var(--line); border-radius:12px; padding:13px 19px; font-weight:900; } .hero-art{ min-height:300px; border-radius:28px; border:1px solid var(--line); background: linear-gradient(145deg,rgba(0,170,255,.18),transparent), linear-gradient(145deg,#141d28,#080b10); display:flex; justify-content:center; align-items:center; overflow:hidden; position:relative; } .hero-art::before{ content:"CAR WARS"; position:absolute; font-size:75px; font-weight:1000; font-style:italic; color:rgba(255,255,255,.025); transform:rotate(-12deg); } .hero-car{ font-size:125px; position:relative; filter:drop-shadow(0 20px 25px rgba(0,0,0,.7)); } /* ================= SEARCH ================= */ .search-area{ max-width:1250px; margin:0 auto 30px; padding:0 20px; } .search-panel{ background:linear-gradient(145deg,#141b25,#0e131a); border:1px solid var(--line); border-radius:20px; padding:18px; } .search-input{ position:relative; margin-bottom:14px; } .search-input span{ position:absolute; left:17px; top:50%; transform:translateY(-50%); } .search-input input{ width:100%; background:#080c12; color:white; border:1px solid var(--line); border-radius:13px; padding:16px 18px 16px 47px; outline:none; } .search-input input:focus{ border-color:var(--blue); } .quick{ display:flex; gap:8px; overflow-x:auto; padding-bottom:3px; } .quick button{ white-space:nowrap; border:1px solid var(--line); background:#121821; color:#b8c2cf; border-radius:999px; padding:9px 14px; font-weight:800; } .quick button.active, .quick button:hover{ color:white; background:var(--blue2); border-color:var(--blue); } /* ================= SECTION ================= */ .section{ max-width:1250px; margin:0 auto 40px; padding:0 20px; } .section-head{ display:flex; justify-content:space-between; align-items:end; gap:15px; margin-bottom:16px; } .section-head h2{ margin:0; font-size:28px; } .section-head p{ margin:5px 0 0; color:var(--muted); } /* ================= BRANDS ================= */ .brand-search{ margin-bottom:12px; } .brand-search input{ width:100%; padding:13px 15px; border:1px solid var(--line); border-radius:12px; background:var(--panel); color:white; outline:none; } .brands{ display:grid; grid-template-columns:repeat(5,1fr); gap:9px; } .brand{ background:linear-gradient(145deg,#151c26,#0f141c); border:1px solid var(--line); border-radius:13px; color:white; padding:12px; min-height:70px; text-align:left; transition:.2s; } .brand:hover{ transform:translateY(-2px); border-color:var(--blue); } .brand.active{ background:linear-gradient(135deg,#087cff,#004ec2); border-color:#46a7ff; } .brand-num{ color:#738091; display:block; font-size:10px; font-weight:900; } .brand.active .brand-num{ color:#d9edff; } .brand-name{ display:block; margin-top:4px; font-weight:900; } /* ================= FILTERS ================= */ .filters{ display:grid; grid-template-columns:repeat(5,1fr); gap:9px; margin-bottom:25px; } .filters select{ width:100%; padding:13px; background:var(--panel); color:white; border:1px solid var(--line); border-radius:11px; outline:none; } /* ================= CARS ================= */ .results{ display:flex; justify-content:space-between; align-items:center; margin-bottom:15px; } .results h2{ margin:0; } .results-count{ color:var(--muted); } .results-count strong{ color:white; } .cars{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; } .car-card{ background:linear-gradient(145deg,#141a23,#0d1219); border:1px solid var(--line); border-radius:19px; overflow:hidden; transition:.2s; } .car-card:hover{ transform:translateY(-5px); border-color:#3b4858; box-shadow:0 18px 40px rgba(0,0,0,.35); } .car-image{ height:205px; background: radial-gradient(circle at center,rgba(0,170,255,.18),transparent 45%), #151c25; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; } .car-image img{ width:100%; height:100%; object-fit:cover; } .car-emoji{ font-size:90px; filter:drop-shadow(0 20px 25px rgba(0,0,0,.65)); } .car-tag{ position:absolute; top:12px; left:12px; background:var(--lime); color:#071000; border-radius:7px; padding:6px 8px; font-size:10px; font-weight:1000; } .car-content{ padding:16px; } .car-brand{ color:#00bfff; font-size:11px; font-weight:900; letter-spacing:1px; text-transform:uppercase; } .car-title{ font-size:21px; font-weight:1000; margin:4px 0 12px; } .specs{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:15px; } .spec{ color:#aab5c3; background:#202832; padding:6px 8px; border-radius:6px; font-size:11px; } .car-bottom{ display:flex; justify-content:space-between; align-items:end; border-top:1px solid #222a35; padding-top:13px; } .price{ font-size:23px; font-weight:1000; } .price small{ display:block; color:var(--muted); font-size:10px; font-weight:500; } .contact{ border:0; background:var(--green); color:#03150d; border-radius:9px; padding:10px 13px; font-weight:1000; } .delete{ border:0; background:rgba(255,64,85,.12); color:#ff7180; border-radius:9px; padding:9px 10px; font-weight:900; } /* ================= MODAL ================= */ .modal{ position:fixed; inset:0; background:rgba(0,0,0,.75); z-index:500; display:flex; justify-content:center; align-items:center; padding:15px; } .modal-box{ width:min(700px,100%); max-height:92vh; overflow:auto; background:#10151d; border:1px solid var(--line); border-radius:20px; padding:22px; } .modal-head{ display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; } .modal-head h2{ margin:0; } .close{ background:#202832; color:white; border:0; border-radius:9px; width:40px; height:40px; font-size:20px; } .form-grid{ display:grid; grid-template-columns:1fr 1fr; gap:12px; } .field{ display:flex; flex-direction:column; gap:6px; } .field.full{ grid-column:1/-1; } .field label{ color:#b9c3cf; font-size:12px; font-weight:800; } .field input, .field select, .field textarea{ width:100%; background:#080c12; color:white; border:1px solid var(--line); border-radius:9px; padding:12px; outline:none; } .field textarea{ min-height:110px; resize:vertical; } .form-actions{ display:flex; justify-content:flex-end; gap:8px; margin-top:18px; } .preview{ width:100%; max-height:220px; object-fit:cover; border-radius:10px; margin-top:8px; } /* ================= LOGIN ================= */ .login-info{ background:#151c26; border:1px solid var(--line); padding:13px; border-radius:10px; color:var(--muted); font-size:12px; margin-bottom:15px; } /* ================= EMPTY ================= */ .empty{ grid-column:1/-1; text-align:center; padding:60px 20px; border:1px solid var(--line); background:var(--panel); border-radius:18px; color:var(--muted); } .empty strong{ display:block; color:white; font-size:20px; margin-bottom:7px; } /* ================= TOAST ================= */ .toast{ position:fixed; right:20px; bottom:20px; background:#17202b; color:white; border:1px solid var(--line); padding:13px 17px; border-radius:11px; z-index:1000; box-shadow:0 15px 40px rgba(0,0,0,.35); } /* ================= FOOTER ================= */ footer{ margin-top:60px; padding:30px 20px; text-align:center; color:var(--muted); border-top:1px solid var(--line); } /* ================= RESPONSIVE ================= */ @media(max-width:950px){ .hero{ grid-template-columns:1fr; } .hero-art{ display:none; } .brands{ grid-template-columns:repeat(3,1fr); } .filters{ grid-template-columns:repeat(2,1fr); } .cars{ grid-template-columns:repeat(2,1fr); } } @media(max-width:600px){ .nav{ padding:10px 14px; } .logo{ font-size:25px; } .nav-btn{ padding:9px; font-size:12px; } .hero{ padding-top:45px; } .hero h1{ letter-spacing:-3px; } .brands{ grid-template-columns:repeat(2,1fr); } .filters{ grid-template-columns:1fr; } .cars{ grid-template-columns:1fr; } .form-grid{ grid-template-columns:1fr; } .field.full{ grid-column:auto; } } </style> </head> <body> <header> <div class="nav">
+    <button class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <span class="car">CAR</span>
+        <span class="wars">WARS</span>
+        <span class="logo-icon">🏎️</span>
+        <span class="f1-under-logo">🏎️ FORMULA 1</span>
+    </button>
+
+    <div class="nav-actions">
+
+        <button class="nav-btn" onclick="scrollToBrands()">
+            Marche
+        </button>
+
+        <button
+            class="nav-btn admin"
+            id="adminButton"
+            onclick="openAdmin()"
+        >
+            🔐 Admin
+        </button>
+
+    </div>
+
+</div>
+
+</header> <main> <section class="hero">
+<div>
+
+    <div class="eyebrow">
+        🔥 IL MARKETPLACE AUTO
+    </div>
+
+    <h1>
+        TROVA.<br>
+        SCEGLI.<br>
+        <span>PARTI.</span>
+    </h1>
+
+    <p>
+        Cerca la tua prossima auto tra marche,
+        modelli, prezzi e caratteristiche.
+        Tutto in un unico posto.
+    </p>
+
+    <div class="hero-buttons">
+
+        <button class="primary" onclick="focusSearch()">
+            🔎 Cerca un'auto
+        </button>
+
+        <button class="secondary" onclick="openAdmin()">
+            ➕ Pubblica annuncio
+        </button>
+
+    </div>
+
+</div>
+
+<div class="hero-art">
+    <div class="hero-car">🏎️</div>
+</div>
+
+</section> <section class="search-area">
+<div class="search-panel">
+
+    <div class="search-input">
+        <span>🔎</span>
+
+        <input
+            id="search"
+            type="text"
+            placeholder="Cerca marca, modello, carburante, regione..."
+        >
+    </div>
+
+    <div class="quick">
+
+        <button class="active" data-quick="">
+            Tutte
+        </button>
+
+        <button data-quick="Premium">
+            👑 Premium
+        </button>
+
+        <button data-quick="SUV">
+            🔥 SUV
+        </button>
+
+        <button data-quick="Sportiva">
+            🏎️ Sportive
+        </button>
+
+        <button data-quick="Elettrica">
+            ⚡ Elettriche
+        </button>
+
+        <button data-quick="Italiana">
+            🇮🇹 Italiane
+        </button>
+
+    </div>
+
+</div>
+
+</section> <section class="section" id="brandsSection">
+<div class="section-head">
+
+    <div>
+        <h2>🔥 Le 50 marche</h2>
+        <p>Seleziona una marca per filtrare gli annunci.</p>
+    </div>
+
+</div>
+
+<div class="brand-search">
+
+    <input
+        id="brandSearch"
+        type="text"
+        placeholder="🔍 Cerca una marca..."
+    >
+
+</div>
+
+<div class="brands" id="brands"></div>
+
+</section> <section class="section">
+<div class="filters">
+
+    <select id="fuel">
+        <option value="">⛽ Tutti i carburanti</option>
+        <option>Benzina</option>
+        <option>Diesel</option>
+        <option>Ibrida</option>
+        <option>Elettrica</option>
+        <option>GPL</option>
+        <option>Metano</option>
+    </select>
+
+    <select id="body">
+        <option value="">🚘 Tutte le carrozzerie</option>
+        <option>Utilitaria</option>
+        <option>SUV</option>
+        <option>Berlina</option>
+        <option>Station Wagon</option>
+        <option>Coupé</option>
+        <option>Monovolume</option>
+    </select>
+
+    <select id="price">
+        <option value="">💰 Qualsiasi prezzo</option>
+        <option value="5000">Fino a 5.000 €</option>
+        <option value="10000">Fino a 10.000 €</option>
+        <option value="15000">Fino a 15.000 €</option>
+        <option value="20000">Fino a 20.000 €</option>
+        <option value="30000">Fino a 30.000 €</option>
+        <option value="50000">Fino a 50.000 €</option>
+        <option value="100000">Fino a 100.000 €</option>
+        <option value="250000">Fino a 250.000 €</option>
+        <option value="500000">Fino a 500.000 €</option>
+        <option value="750000">Fino a 750.000 €</option>
+        <option value="1000000">Fino a 1.000.000 €</option>
+    </select>
+
+    <select id="km">
+        <option value="">🛣️ Qualsiasi km</option>
+        <option value="30000">Fino a 30.000 km</option>
+        <option value="60000">Fino a 60.000 km</option>
+        <option value="100000">Fino a 100.000 km</option>
+        <option value="150000">Fino a 150.000 km</option>
+        <option value="250000">Fino a 250.000 km</option>
+        <option value="500000">Fino a 500.000 km</option>
+        <option value="750000">Fino a 750.000 km</option>
+        <option value="1000000">Fino a 1.000.000 km</option>
+    </select>
+
+    <select id="region">
+        <option value="">📍 Tutta Italia</option>
+        <option>Abruzzo</option>
+        <option>Basilicata</option>
+        <option>Calabria</option>
+        <option>Campania</option>
+        <option>Emilia-Romagna</option>
+        <option>Friuli-Venezia Giulia</option>
+        <option>Lazio</option>
+        <option>Liguria</option>
+        <option>Lombardia</option>
+        <option>Marche</option>
+        <option>Piemonte</option>
+        <option>Puglia</option>
+        <option>Sardegna</option>
+        <option>Sicilia</option>
+        <option>Toscana</option>
+        <option>Trentino-Alto Adige</option>
+        <option>Umbria</option>
+        <option>Valle d'Aosta</option>
+        <option>Veneto</option>
+    </select>
+
+</div>
+
+<div class="results">
+
+    <h2>🚗 Annunci</h2>
+
+    <div class="results-count">
+        <strong id="count">0</strong> risultati
+    </div>
+
+</div>
+
+<div class="cars" id="cars"></div>
+
+</section> </main> <footer> <strong>CAR WARS</strong> 🏎️<br><br> Il tuo prossimo viaggio comincia qui. </footer> <!-- ================= LOGIN MODAL ================= --> <div class="modal hidden" id="loginModal">
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h2>🔐 Accesso Admin</h2>
+
+        <button class="close" onclick="closeModal('loginModal')">
+            ×
+        </button>
+
+    </div>
+
+    <div class="login-info">
+        Demo: username <strong>admin</strong> —
+        password <strong>carwars2026</strong>
+    </div>
+
+    <form id="loginForm">
+
+        <div class="field">
+            <label>Username</label>
+            <input id="loginUser" required>
+        </div>
+
+        <br>
+
+        <div class="field">
+            <label>Password</label>
+            <input id="loginPassword" type="password" required>
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="button"
+                class="secondary"
+                onclick="closeModal('loginModal')"
+            >
+                Annulla
+            </button>
+
+            <button class="primary">
+                Accedi
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div> <!-- ================= ADMIN MODAL ================= --> <div class="modal hidden" id="adminModal">
+<div class="modal-box">
+
+    <div class="modal-head">
+
+        <h2>🚀 Pubblica annuncio</h2>
+
+        <button class="close" onclick="closeModal('adminModal')">
+            ×
+        </button>
+
+    </div>
+
+    <form id="carForm">
+
+        <input type="hidden" id="editId">
+
+        <div class="form-grid">
+
+            <div class="field">
+                <label>Marca *</label>
+
+                <select id="formBrand" required></select>
+            </div>
+
+            <div class="field">
+                <label>Modello *</label>
+
+                <input
+                    id="formModel"
+                    required
+                    placeholder="es. Golf 1.5 TSI"
+                >
+            </div>
+
+            <div class="field">
+                <label>Prezzo (€) *</label>
+
+                <input
+                    id="formPrice"
+                    type="number"
+                    min="0"
+                    required
+                >
+            </div>
+
+            <div class="field">
+                <label>Anno</label>
+
+                <input
+                    id="formYear"
+                    type="number"
+                    min="1950"
+                    max="2030"
+                    placeholder="2022"
+                >
+            </div>
+
+            <div class="field">
+                <label>Chilometri</label>
+
+                <input
+                    id="formKm"
+                    type="number"
+                    min="0"
+                    placeholder="35000"
+                >
+            </div>
+
+            <div class="field">
+                <label>Carburante</label>
+
+                <select id="formFuel">
+                    <option>Benzina</option>
+                    <option>Diesel</option>
+                    <option>Ibrida</option>
+                    <option>Elettrica</option>
+                    <option>GPL</option>
+                    <option>Metano</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Carrozzeria</label>
+
+                <select id="formBody">
+                    <option>Utilitaria</option>
+                    <option>SUV</option>
+                    <option>Berlina</option>
+                    <option>Station Wagon</option>
+                    <option>Coupé</option>
+                    <option>Monovolume</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Regione</label>
+
+                <select id="formRegion">
+                    <option>Lazio</option>
+                    <option>Lombardia</option>
+                    <option>Piemonte</option>
+                    <option>Veneto</option>
+                    <option>Emilia-Romagna</option>
+                    <option>Toscana</option>
+                    <option>Campania</option>
+                    <option>Puglia</option>
+                    <option>Sicilia</option>
+                    <option>Sardegna</option>
+                    <option>Liguria</option>
+                    <option>Marche</option>
+                    <option>Umbria</option>
+                    <option>Abruzzo</option>
+                    <option>Calabria</option>
+                    <option>Basilicata</option>
+                    <option>Friuli-Venezia Giulia</option>
+                    <option>Trentino-Alto Adige</option>
+                    <option>Molise</option>
+                    <option>Valle d'Aosta</option>
+                </select>
+            </div>
+
+            <div class="field">
+                <label>Telefono / WhatsApp</label>
+
+                <input
+                    id="formPhone"
+                    placeholder="+39 333 1234567"
+                >
+            </div>
+
+            <div class="field">
+                <label>Foto principale</label>
+
+                <input
+                    id="formImage"
+                    type="file"
+                    accept="image/*"
+                >
+
+                <img
+                    id="preview"
+                    class="preview hidden"
+                    alt="Anteprima auto"
+                >
+            </div>
+
+            <div class="field full">
+
+                <label>Descrizione</label>
+
+                <textarea
+                    id="formDescription"
+                    placeholder="Descrivi l'auto..."
+                ></textarea>
+
+            </div>
+
+        </div>
+
+        <div class="form-actions">
+
+            <button
+                type="button"
+                class="secondary"
+                onclick="closeModal('adminModal')"
+            >
+                Annulla
+            </button>
+
+            <button class="primary">
+                🚀 Pubblica
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</div> <div id="toast" class="toast hidden"></div> <script> /* ========================================================= CAR WARS — DATABASE LOCALE ========================================================= */ const STORAGE_KEY = "carwars_ads_v1"; const LOGIN_KEY = "carwars_admin_v1"; const brands = [ "Abarth", "Alfa Romeo", "Audi", "BMW", "BYD", "Citroën", "Cupra", "Dacia", "DS Automobiles", "DR", "Fiat", "Ford", "Honda", "Hyundai", "Jaecoo", "Jaguar", "Jeep", "Kia", "Lancia", "Land Rover", "Lexus", "Leapmotor", "Mazda", "Mercedes-Benz", "MG", "Mini", "Mitsubishi", "Nissan", "Omoda", "Opel", "Peugeot", "Polestar", "Porsche", "Renault", "Seat", "Skoda", "Smart", "Subaru", "Suzuki", "Tesla", "Toyota", "Volkswagen", "Volvo", "Maserati", "Ferrari", "Lamborghini", "McLaren", "Bentley", "Aston Martin", "Alpine" ]; let selectedBrand = ""; let quickFilter = ""; let ads = loadAds(); /* ========================================================= ANNUNCI DEMO INIZIALI ========================================================= */ if(!ads.length){ ads = [ createDemo( "Fiat", "Panda", 8900, 65000, "Benzina", "Utilitaria", "Lazio", "Auto cittadina in ottime condizioni." ), createDemo( "Volkswagen", "Golf", 18900, 39000, "Diesel", "Berlina", "Lombardia", "Golf ben accessoriata, pronta all'uso." ), createDemo( "BMW", "Serie 1", 24900, 35000, "Benzina", "Berlina", "Lombardia", "Sportiva e elegante." ), createDemo( "Audi", "A3", 22900, 48000, "Diesel", "Berlina", "Piemonte", "Audi A3 con ottima dotazione." ), createDemo( "Mercedes-Benz", "Classe A", 28900, 31000, "Benzina", "Berlina", "Lazio", "Classe A premium." ), createDemo( "Jeep", "Renegade", 17900, 55000, "Diesel", "SUV", "Campania", "SUV versatile per città e viaggi." ), createDemo( "Toyota", "Yaris", 16900, 28000, "Ibrida", "Utilitaria", "Toscana", "Ibrida economica e affidabile." ), createDemo( "Dacia", "Duster", 17900, 41000, "GPL", "SUV", "Lazio", "SUV pratico e conveniente." ), createDemo( "Tesla", "Model 3", 31900, 26000, "Elettrica", "Berlina", "Lombardia", "Elettrica ad alte prestazioni." ), createDemo( "Alfa Romeo", "Giulia", 27900, 45000, "Diesel", "Berlina", "Piemonte", "Sportiva italiana." ) ]; saveAds(); } /* ========================================================= UTILITA' ========================================================= */ function createDemo( brand, model, price, km, fuel, body, region, description ){ return { id:Date.now()+Math.random(), brand, model, price, km, year:2022, fuel, body, region, phone:"", description, image:"", createdAt:new Date().toISOString() }; } function loadAds(){ try{ return JSON.parse( localStorage.getItem(STORAGE_KEY) ) || []; }catch(error){ return []; } } function saveAds(){ localStorage.setItem( STORAGE_KEY, JSON.stringify(ads) ); } /* ========================================================= BRANDS ========================================================= */ function renderBrands(){ const search = document.getElementById("brandSearch") .value .toLowerCase() .trim(); const filtered = brands.filter( brand => brand.toLowerCase().includes(search) ); document.getElementById("brands").innerHTML = filtered.map((brand,index)=>` <button class="brand ${selectedBrand===brand?"active":""}" data-brand="${escapeHTML(brand)}" > <span class="brand-num"> ${String(index+1).padStart(2,"0")} </span> <span class="brand-name"> ${escapeHTML(brand)} </span> </button> `).join(""); } function selectBrand(brand){ selectedBrand = selectedBrand===brand ? "" : brand; renderBrands(); renderAds(); } /* ========================================================= FORM BRAND ========================================================= */ function fillBrandSelect(){ document.getElementById("formBrand").innerHTML = brands.map( brand => `<option>${escapeHTML(brand)}</option>` ).join(""); } /* ========================================================= RENDER ANNUNCI ========================================================= */ function renderAds(){ const search = document.getElementById("search") .value .toLowerCase() .trim(); const fuel = document.getElementById("fuel").value; const body = document.getElementById("body").value; const price = document.getElementById("price").value; const km = document.getElementById("km").value; const region = document.getElementById("region").value; const filtered = ads.filter(ad=>{ const text = ` ${ad.brand} ${ad.model} ${ad.fuel} ${ad.body} ${ad.region} ${ad.description} `.toLowerCase(); const searchOK = !search || text.includes(search); const brandOK = !selectedBrand || ad.brand===selectedBrand; const fuelOK = !fuel || ad.fuel===fuel; const bodyOK = !body || ad.body===body; const priceOK = !price || Number(ad.price)<=Number(price); const kmOK = !km || Number(ad.km)<=Number(km); const regionOK = !region || ad.region===region; let quickOK=true; if(quickFilter){ if(quickFilter==="SUV"){ quickOK=ad.body==="SUV"; } else if(quickFilter==="Elettrica"){ quickOK=ad.fuel==="Elettrica"; } else if(quickFilter==="Sportiva"){ quickOK= ["BMW","Audi","Mercedes-Benz","Alfa Romeo", "Porsche","Ferrari","Lamborghini","McLaren", "Maserati","Abarth"].includes(ad.brand); } else if(quickFilter==="Premium"){ quickOK= ["BMW","Audi","Mercedes-Benz","Lexus", "Porsche","Maserati","Bentley","Aston Martin", "Ferrari","Lamborghini"].includes(ad.brand); } else if(quickFilter==="Italiana"){ quickOK= ["Fiat","Alfa Romeo","Lancia","Abarth", "Ferrari","Lamborghini","Maserati"].includes(ad.brand); } } return ( searchOK && brandOK && fuelOK && bodyOK && priceOK && kmOK && regionOK && quickOK ); }); document.getElementById("count") .textContent=filtered.length; const container = document.getElementById("cars"); if(!filtered.length){ container.innerHTML=` <div class="empty"> <strong>😕 Nessun annuncio trovato</strong> Prova a modificare i filtri o pubblica una nuova auto. </div> `; return; } container.innerHTML = filtered.map(renderCard).join(""); } function renderCard(ad){ const image = ad.image ? `<img src="${ad.image}" alt="${escapeHTML(ad.brand+" "+ad.model)}">` : `<div class="car-emoji">🚗</div>`; const admin = isAdmin() ? ` <button class="delete" data-delete="${ad.id}" > 🗑️ </button> ` : ""; return ` <article class="car-card"> <div class="car-image"> <div class="car-tag"> ${ad.fuel==="Elettrica"?"⚡ ELETTRICA":"CAR WARS"} </div> ${image} </div> <div class="car-content"> <div class="car-brand"> ${escapeHTML(ad.brand)} </div> <div class="car-title"> ${escapeHTML(ad.model)} </div> <div class="specs"> <span class="spec"> 📅 ${ad.year || "—"} </span> <span class="spec"> 🛣️ ${Number(ad.km||0).toLocaleString("it-IT")} km </span> <span class="spec"> ⛽ ${escapeHTML(ad.fuel)} </span> <span class="spec"> 🚘 ${escapeHTML(ad.body)} </span> <span class="spec"> 📍 ${escapeHTML(ad.region)} </span> </div> <div class="car-bottom"> <div class="price"> ${Number(ad.price).toLocaleString("it-IT")} € <small> ${escapeHTML(ad.description || "Auto disponibile")} </small> </div> <div style="display:flex;gap:5px"> <button class="contact" data-contact="${ad.id}" > Contatta </button> ${admin} </div> </div> </div> </article> `; } /* ========================================================= ADMIN ========================================================= */ function isAdmin(){ return localStorage.getItem(LOGIN_KEY)==="true"; } function openAdmin(){ if(isAdmin()){ openModal("adminModal"); }else{ openModal("loginModal"); } } function login(username,password){ if( username==="admin" && password==="carwars2026" ){ localStorage.setItem( LOGIN_KEY, "true" ); closeModal("loginModal"); showToast("✅ Accesso amministratore effettuato"); renderAds(); document.getElementById("adminButton") .textContent="🔓 Admin"; return true; } showToast("❌ Credenziali non corrette"); return false; } /* ========================================================= SAVE ANNUNCIO ========================================================= */ let selectedImage=""; document .getElementById("formImage") .addEventListener("change",function(){ const file=this.files[0]; if(!file){ return; } if(file.size>4*1024*1024){ showToast( "⚠️ Immagine troppo grande. Massimo 4 MB." ); this.value=""; return; } const reader=new FileReader(); reader.onload=function(event){ selectedImage=event.target.result; const preview= document.getElementById("preview"); preview.src=selectedImage; preview.classList.remove("hidden"); }; reader.readAsDataURL(file); }); document .getElementById("carForm") .addEventListener("submit",function(event){ event.preventDefault(); if(!isAdmin()){ showToast("🔐 Devi essere amministratore"); return; } const editId = document.getElementById("editId").value; const data={ id: editId ? Number(editId) : Date.now(), brand: document.getElementById("formBrand").value, model: document.getElementById("formModel").value.trim(), price: Number(document.getElementById("formPrice").value), year: Number(document.getElementById("formYear").value)||"", km: Number(document.getElementById("formKm").value)||0, fuel: document.getElementById("formFuel").value, body: document.getElementById("formBody").value, region: document.getElementById("formRegion").value, phone: document.getElementById("formPhone").value.trim(), description: document.getElementById("formDescription").value.trim(), image: selectedImage, createdAt: new Date().toISOString() }; if(!data.model){ showToast("⚠️ Inserisci il modello"); return; } if(!data.price || data.price<0){ showToast("⚠️ Inserisci un prezzo valido"); return; } if(editId){ const index=ads.findIndex( ad=>String(ad.id)===String(editId) ); if(index!==-1){ ads[index]={ ...ads[index], ...data, image: selectedImage || ads[index].image }; } showToast("✅ Annuncio modificato"); }else{ ads.unshift(data); showToast("🚀 Annuncio pubblicato!"); } saveAds(); this.reset(); selectedImage=""; document .getElementById("preview") .classList.add("hidden"); document .getElementById("editId") .value=""; closeModal("adminModal"); renderAds(); }); /* ========================================================= LOGIN ========================================================= */ document .getElementById("loginForm") .addEventListener("submit",function(event){ event.preventDefault(); login( document.getElementById("loginUser").value, document.getElementById("loginPassword").value ); }); /* ========================================================= EVENTI ========================================================= */ document .getElementById("search") .addEventListener("input",renderAds); document .getElementById("brandSearch") .addEventListener("input",renderBrands); [ "fuel", "body", "price", "km", "region" ].forEach(id=>{ document .getElementById(id) .addEventListener("change",renderAds); }); document .getElementById("brands") .addEventListener("click",function(event){ const button= event.target.closest("[data-brand]"); if(!button){ return; } selectBrand(button.dataset.brand); }); document .querySelector(".quick") .addEventListener("click",function(event){ const button= event.target.closest("[data-quick]"); if(!button){ return; } quickFilter= button.dataset.quick; document .querySelectorAll(".quick button") .forEach(btn=>{ btn.classList.remove("active"); }); button.classList.add("active"); renderAds(); }); document .getElementById("cars") .addEventListener("click",function(event){ const contact= event.target.closest("[data-contact]"); if(contact){ const ad= ads.find( item => String(item.id)=== String(contact.dataset.contact) ); if(ad){ if(ad.phone){ const phone= ad.phone.replace(/[^\d+]/g,""); window.open( "https://wa.me/"+phone.replace("+",""), "_blank" ); }else{ showToast( "📞 Il venditore non ha inserito WhatsApp." ); } } return; } const deleteButton= event.target.closest("[data-delete]"); if(deleteButton){ deleteAd( deleteButton.dataset.delete ); } }); /* ========================================================= DELETE ========================================================= */ function deleteAd(id){ if(!isAdmin()){ return; } const ad= ads.find( item=>String(item.id)===String(id) ); if(!ad){ return; } if(!confirm( `Eliminare ${ad.brand} ${ad.model}?` )){ return; } ads= ads.filter( item=>String(item.id)!==String(id) ); saveAds(); renderAds(); showToast("🗑️ Annuncio eliminato"); } /* ========================================================= MODAL ========================================================= */ function openModal(id){ document .getElementById(id) .classList.remove("hidden"); } function closeModal(id){ document .getElementById(id) .classList.add("hidden"); } document .querySelectorAll(".modal") .forEach(modal=>{ modal.addEventListener("click",function(event){ if(event.target===modal){ modal.classList.add("hidden"); } }); }); /* ========================================================= TOAST ========================================================= */ let toastTimer; function showToast(message){ const toast= document.getElementById("toast"); toast.textContent=message; toast.classList.remove("hidden"); clearTimeout(toastTimer); toastTimer=setTimeout(()=>{ toast.classList.add("hidden"); },3000); } /* ========================================================= UTILITY ========================================================= */ function escapeHTML(value){ return String(value ?? "") .replace(/&/g,"&amp;") .replace(/</g,"&lt;") .replace(/>/g,"&gt;") .replace(/"/g,"&quot;") .replace(/'/g,"&#039;"); } function focusSearch(){ document .getElementById("search") .focus(); document .querySelector(".search-area") .scrollIntoView({ behavior:"smooth" }); } function scrollToBrands(){ document .getElementById("brandsSection") .scrollIntoView({ behavior:"smooth" }); } /* ========================================================= AVVIO ========================================================= */ fillBrandSelect(); renderBrands(); renderAds(); if(isAdmin()){ document .getElementById("adminButton") .textContent="🔓 Admin"; } </script> </body> </html>
